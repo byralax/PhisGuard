@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard Settings</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .header {
+      background-color: #4285F4;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+    
+    .content {
+      padding: 20px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 20px;
+    }
+    
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    
+    h2 {
+      color: #4285F4;
+      margin-top: 0;
+      font-size: 18px;
+    }
+    
+    .option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .option:last-child {
+      margin-bottom: 0;
+    }
+    
+    .option label {
+      margin-left: 10px;
+      flex-grow: 1;
+    }
+    
+    .option-description {
+      font-size: 14px;
+      color: #666;
+      margin-left: 30px;
+      margin-top: 5px;
+    }
+    
+    .api-key-section {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    
+    .api-key-input {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    
+    .api-key-input input {
+      flex-grow: 1;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    
+    .api-key-input button {
+      margin-left: 10px;
+      padding: 8px 12px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .api-key-input button:hover {
+      background-color: #3367D6;
+    }
+    
+    .api-key-description {
+      font-size: 13px;
+      color: #666;
+    }
+    
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    
+    .buttons button {
+      padding: 10px 20px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .save-btn {
+      background-color: #4285F4;
+      color: white;
+    }
+    
+    .save-btn:hover {
+      background-color: #3367D6;
+    }
+    
+    .reset-btn {
+      background-color: white;
+      color: #4285F4;
+      border: 1px solid #4285F4 !important;
+    }
+    
+    .reset-btn:hover {
+      background-color: #f0f7ff;
+    }
+    
+    .footer {
+      padding: 15px 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .footer a {
+      color: #4285F4;
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .status-message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      display: none;
+    }
+    
+    .success {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #C8E6C9;
+    }
+    
+    .error {
+      background-color: #FFEBEE;
+      color: #C62828;
+      border: 1px solid #FFCDD2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><img src="logo.webp" alt="PhishGuard Logo"> PhishGuard Settings</h1>
+    </div>
+    
+    <div class="content">
+      <div class="section">
+        <h2>Protection Settings</h2>
+        
+        <div class="option">
+          <input type="checkbox" id="enable-phishtank" checked>
+          <label for="enable-phishtank">Check URLs against PhishTank database</label>
+        </div>
+        <div class="option-description">
+          PhishTank is a community-driven database of known phishing sites.
+        </div>
+        
+        <div class="option">
+          <input type="checkbox" id="enable-safebrowsing" checked>
+          <label for="enable-safebrowsing">Check URLs against Google Safe Browsing</label>
+        </div>
+        <div class="option-description">
+          Google Safe Browsing identifies unsafe websites, including those that contain malware or phishing content.
+        </div>
+        
+        <div class="option">
+          <input type="checkbox" id="enable-custom-db" checked>
+          <label for="enable-custom-db">Check URLs against Nigeria-specific phishing database</label>
+        </div>
+        <div class="option-description">
+          This database contains phishing sites specifically targeting Nigerian users and organizations.
+        </div>
+        
+        <div class="option">
+          <input type="checkbox" id="enable-content-scanning" checked>
+          <label for="enable-content-scanning">Enable content scanning</label>
+        </div>
+        <div class="option-description">
+          Analyze webpage content for phishing indicators such as suspicious forms, brand impersonation, and hidden elements.
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2>Warning Settings</h2>
+        
+        <div class="option">
+          <input type="radio" name="warning-level" id="warning-low" value="low">
+          <label for="warning-low">Low - Only warn for confirmed phishing sites</label>
+        </div>
+        
+        <div class="option">
+          <input type="radio" name="warning-level" id="warning-medium" value="medium" checked>
+          <label for="warning-medium">Medium - Warn for confirmed and suspected phishing sites</label>
+        </div>
+        
+        <div class="option">
+          <input type="radio" name="warning-level" id="warning-high" value="high">
+          <label for="warning-high">High - Warn for any suspicious site (may increase false positives)</label>
+        </div>
+        
+        <div class="option">
+          <input type="checkbox" id="show-educational-tips" checked>
+          <label for="show-educational-tips">Show educational tips about phishing prevention</label>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2>API Keys</h2>
+        <p>Enter your API keys to enable full functionality. If you don't have API keys, some features may be limited.</p>
+        
+        <div class="api-key-section">
+          <h3>PhishTank API Key</h3>
+          <div class="api-key-input">
+            <input type="password" id="phishtank-api-key" placeholder="Enter your PhishTank API key">
+            <button id="toggle-phishtank-key">Show</button>
+          </div>
+          <div class="api-key-description">
+            Get a free API key from <a href="https://www.phishtank.com/api_register.php" target="_blank">PhishTank</a>
+          </div>
+        </div>
+        
+        <div class="api-key-section">
+          <h3>Google Safe Browsing API Key</h3>
+          <div class="api-key-input">
+            <input type="password" id="safebrowsing-api-key" placeholder="Enter your Google Safe Browsing API key">
+            <button id="toggle-safebrowsing-key">Show</button>
+          </div>
+          <div class="api-key-description">
+            Get an API key from <a href="https://developers.google.com/safe-browsing/v4/get-started" target="_blank">Google Cloud Console</a>
+          </div>
+        </div>
+        
+        <div class="api-key-section">
+          <h3>Custom Database API Key</h3>
+          <div class="api-key-input">
+            <input type="password" id="custom-api-key" placeholder="Enter your custom API key">
+            <button id="toggle-custom-key">Show</button>
+          </div>
+          <div class="api-key-description">
+            Contact National Information Technology Development Agency to obtain an API key for the Nigeria-specific phishing database
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2>Data & Privacy</h2>
+        
+        <div class="option">
+          <input type="checkbox" id="enable-statistics" checked>
+          <label for="enable-statistics">Collect anonymous usage statistics</label>
+        </div>
+        <div class="option-description">
+          This helps us improve the extension by understanding how it's being used. No personal information is collected.
+        </div>
+        
+        <div class="option">
+          <input type="checkbox" id="enable-reporting" checked>
+          <label for="enable-reporting">Automatically report detected phishing sites</label>
+        </div>
+        <div class="option-description">
+          Helps improve our phishing detection by reporting new phishing sites to our database.
+        </div>
+      </div>
+      
+      <div id="status-message" class="status-message"></div>
+      
+      <div class="buttons">
+        <button id="reset-btn" class="reset-btn">Reset to Defaults</button>
+        <button id="save-btn" class="save-btn">Save Settings</button>
+      </div>
+    </div>
+    
+    <div class="footer">
+    <p>PhishGuard v1.0.0 | Developed by <a href="https://github.com/byralax" target="_blank">byralax</a></p>
+      <div><a href="help.html">Help</a> | <a href="privacy.html">Privacy Policy</a></div>
+    </div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
+</html>
+
