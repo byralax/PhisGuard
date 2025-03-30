@@ -513,7 +513,7 @@ async function reportPhishingSite(url, details) {
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
     // Show welcome page on install
-    chrome.tabs.create({ url: "welcome.html" })
+    chrome.tabs.create({ url: "index.html" })
   } else if (details.reason === "update") {
     // Show update notification
     chrome.notifications.create({
