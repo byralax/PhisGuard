@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 320px;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .header {
+      background-color: #4285F4;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 3px solid #3367D6;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .status {
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .safe {
+      background-color: #0F9D58;
+    }
+
+    .warning {
+      background-color: #F4B400;
+    }
+
+    .danger {
+      background-color: #DB4437;
+    }
+
+    .status-text {
+      font-weight: 500;
+    }
+
+    .url {
+      font-size: 14px;
+      word-break: break-all;
+      color: #666;
+    }
+
+    .content {
+      padding: 15px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .stat-box {
+      background-color: white;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+      width: 30%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-number {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .primary-btn {
+      background-color: #4285F4;
+      color: white;
+    }
+
+    .primary-btn:hover {
+      background-color: #3367D6;
+    }
+
+    .secondary-btn {
+      background-color: white;
+      color: #4285F4;
+      border: 1px solid #4285F4;
+    }
+
+    .secondary-btn:hover {
+      background-color: #f0f7ff;
+    }
+
+    .danger-btn {
+      background-color: #DB4437;
+      color: white;
+    }
+
+    .danger-btn:hover {
+      background-color: #C53929;
+    }
+
+    .footer {
+      padding: 10px 15px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .footer a {
+      color: #4285F4;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .warning-details {
+      background-color: #FFF3E0;
+      border-left: 3px solid #F4B400;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .warning-details h3 {
+      margin: 0 0 5px 0;
+      font-size: 14px;
+      color: #E65100;
+    }
+
+    .warning-details ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .warning-details li {
+      margin-bottom: 3px;
+    }
+
+    .tip {
+      background-color: #E8F5E9;
+      border-left: 3px solid #0F9D58;
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .tip h3 {
+      margin: 0 0 5px 0;
+      font-size: 14px;
+      color: #0F9D58;
+    }
+
+    .tip p {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.webp" alt="PhishGuard Logo">
+      <h1>PhishGuard</h1>
+    </div>
+    <div id="version">v1.0.0</div>
+  </div>
+
+  <div class="status">
+    <div class="status-indicator">
+      <div id="status-dot" class="status-dot safe"></div>
+      <div id="status-text" class="status-text">This site appears safe</div>
+    </div>
+    <div id="current-url" class="url">example.com</div>
+  </div>
+
+  <div class="content">
+    <div class="stats">
+      <div class="stat-box">
+        <div id="sites-checked" class="stat-number">0</div>
+        <div class="stat-label">Sites Checked</div>
+      </div>
+      <div class="stat-box">
+        <div id="threats-blocked" class="stat-number">0</div>
+        <div class="stat-label">Threats Blocked</div>
+      </div>
+      <div class="stat-box">
+        <div id="days-active" class="stat-number">0</div>
+        <div class="stat-label">Days Active</div>
+      </div>
+    </div>
+
+    <div id="warning-details" class="warning-details" style="display: none;">
+      <h3>Warning Details:</h3>
+      <ul id="warning-reasons">
+        <!-- Warning reasons will be inserted here -->
+      </ul>
+    </div>
+
+    <div class="tip">
+      <h3>Security Tip:</h3>
+      <p id="security-tip">Always check the URL before entering sensitive information. Legitimate websites use secure
+        connections (https://).</p>
+    </div>
+
+    <div class="actions">
+      <button id="scan-page-btn" class="primary-btn">Scan This Page</button>
+      <button id="report-site-btn" class="secondary-btn">Report This Site</button>
+      <button id="settings-btn" class="secondary-btn">Settings</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>PhishGuard v1.0.0 | Developed by <a href="https://github.com/byralax" target="_blank">byralax</a></p>
+    <div><a href="#" id="help-link">Help</a> | <a href="#" id="privacy-link">Privacy</a></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

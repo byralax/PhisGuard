@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & Support - PhishGuard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      text-align: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #e0e0e0;
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    
+    .logo img {
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+    }
+    
+    .logo h1 {
+      font-size: 28px;
+      margin: 0;
+      color: #4285F4;
+    }
+    
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      display: flex;
+    }
+    
+    .search-box input {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      font-size: 16px;
+    }
+    
+    .search-box button {
+      padding: 10px 15px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    
+    .search-box button:hover {
+      background-color: #3367D6;
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+    
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    
+    .tab.active {
+      border-bottom-color: #4285F4;
+      font-weight: 500;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    h2 {
+      color: #4285F4;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 10px;
+      margin-top: 30px;
+    }
+    
+    h3 {
+      color: #555;
+      margin-top: 20px;
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 20px;
+    }
+    
+    .faq-question {
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question:after {
+      content: '+';
+      font-size: 20px;
+      color: #4285F4;
+    }
+    
+    .faq-question.open:after {
+      content: '-';
+    }
+    
+    .faq-answer {
+      margin-top: 10px;
+      display: none;
+    }
+    
+    .faq-answer.open {
+      display: block;
+    }
+    
+    .troubleshooting-item {
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .troubleshooting-item h3 {
+      margin-top: 0;
+      color: #D32F2F;
+    }
+    
+    .solution {
+      background-color: #E8F5E9;
+      border-left: 4px solid #4CAF50;
+      padding: 10px 15px;
+      margin-top: 10px;
+    }
+    
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .contact-method {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .contact-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #4285F4;
+    }
+    
+    .resources-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .resource-item {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .resource-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #4285F4;
+    }
+    
+    .resource-item a {
+      color: #4285F4;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .resource-item a:hover {
+      text-decoration: underline;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 14px;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 40px;
+    }
+    
+    .footer a {
+      color: #4285F4;
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="logo.webp" alt="PhishGuard Logo">
+        <h1>PhishGuard Help & Support</h1>
+      </div>
+    </div>
+    
+    <div class="search-box">
+      <input type="text" placeholder="Search for help topics...">
+      <button>Search</button>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" data-tab="faq">Frequently Asked Questions</div>
+      <div class="tab" data-tab="troubleshooting">Troubleshooting</div>
+      <div class="tab" data-tab="usage">How to Use</div>
+      <div class="tab" data-tab="contact">Contact Support</div>
+      <div class="tab" data-tab="resources">Resources</div>
+    </div>
+    
+    <div id="faq" class="tab-content active">
+      <h2>Frequently Asked Questions</h2>
+      
+      <div class="faq-item">
+        <div class="faq-question">What is PhishGuard and how does it work?</div>
+        <div class="faq-answer">
+          <p>PhishGuard is a browser extension that protects you from phishing attacks by checking websites you visit against databases of known phishing sites and analyzing webpage content for suspicious elements.</p>
+          <p>When you visit a website, PhishGuard works in the background to:</p>
+          <ul>
+            <li>Check the URL against PhishTank, Google Safe Browsing, and our custom database of Nigeria-specific phishing sites</li>
+            <li>Scan the webpage content for phishing indicators like suspicious forms, brand impersonation, and hidden elements</li>
+            <li>Show a warning if a potential phishing attempt is detected</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Does PhishGuard slow down my browsing?</div>
+        <div class="faq-answer">
+          <p>PhishGuard is designed to be lightweight and efficient. The extension performs most checks in the background and uses optimized algorithms to minimize any impact on your browsing experience.</p>
+          <p>In most cases, you won't notice any slowdown. URL checks are performed quickly, and content scanning happens after the page has loaded so it doesn't delay page rendering.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What information does PhishGuard collect about my browsing?</div>
+        <div class="faq-answer">
+          <p>PhishGuard respects your privacy. The extension checks URLs against phishing databases but does not store a history of the websites you visit on our servers.</p>
+          <p>Content scanning is performed locally in your browser, and we do not transmit or store the content of websites you visit.</p>
+          <p>If enabled in settings, we collect anonymous usage statistics like the number of phishing attempts blocked to help improve the extension.</p>
+          <p>For complete details, please see our <a href="privacy.html">Privacy Policy</a>.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Do I need API keys for PhishGuard to work?</div>
+        <div class="faq-answer">
+          <p>PhishGuard can work without API keys, but adding them enhances the protection:</p>
+          <ul>
+            <li>Without API keys: PhishGuard will use basic URL analysis and content scanning to detect phishing attempts</li>
+            <li>With API keys: PhishGuard can check URLs against PhishTank, Google Safe Browsing, and our custom database for more comprehensive protection</li>
+          </ul>
+          <p>You can add API keys in the extension settings. Instructions for obtaining free API keys are provided on the settings page.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">What should I do if I encounter a phishing site?</div>
+        <div class="faq-answer">
+          <p>If PhishGuard detects a phishing site, it will show a warning with options to go back to safety or proceed (not recommended). If you encounter a phishing site that wasn't detected:</p>
+          <ol>
+            <li>Do not enter any personal information on the site</li>
+            <li>Click the PhishGuard icon in your browser toolbar</li>
+            <li>Click "Report This Site" to submit the URL for analysis</li>
+            <li>Leave the site immediately</li>
+          </ol>
+          <p>Your report helps improve protection for all users.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Can PhishGuard detect all phishing attempts?</div>
+        <div class="faq-answer">
+          <p>While PhishGuard uses advanced techniques to detect phishing attempts, no solution can guarantee 100% protection. Phishing attacks are constantly evolving, and new threats emerge regularly.</p>
+          <p>PhishGuard provides strong protection against known phishing sites and common phishing techniques, but it's still important to stay vigilant and follow good security practices:</p>
+          <ul>
+            <li>Be cautious about clicking links in emails or messages</li>
+            <li>Verify website URLs before entering sensitive information</li>
+            <li>Look for HTTPS (padlock icon) in the address bar</li>
+            <li>Be suspicious of urgent requests for personal information</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div id="troubleshooting" class="tab-content">
+      <h2>Troubleshooting</h2>
+      
+      <div class="troubleshooting-item">
+        <h3>PhishGuard icon is grayed out or not responding</h3>
+        <p>This usually indicates that the extension is not properly initialized or has encountered an error.</p>
+        <div class="solution">
+          <strong>Solution:</strong>
+          <ol>
+            <li>Try refreshing the page</li>
+            <li>Restart your browser</li>
+            <li>Disable and re-enable the extension:
+              <ul>
+                <li>Go to chrome://extensions/</li>
+                <li>Find PhishGuard and toggle it off, then on again</li>
+              </ul>
+            </li>
+            <li>If the problem persists, try reinstalling the extension</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="troubleshooting-item">
+        <h3>PhishGuard is showing false positives (marking safe sites as phishing)</h3>
+        <p>Sometimes legitimate websites may be incorrectly flagged as phishing sites due to certain characteristics they share with malicious sites.</p>
+        <div class="solution">
+          <strong>Solution:</strong>
+          <ol>
+            <li>Adjust your warning level in settings to "Low" to reduce false positives</li>
+            <li>Report the false positive:
+              <ul>
+                <li>Click the PhishGuard icon</li>
+                <li>Click "This is a false positive" in the popup</li>
+              </ul>
+            </li>
+            <li>Temporarily disable specific checks in settings that might be causing the issue</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="troubleshooting-item">
+        <h3>API key errors or connection issues</h3>
+        <p>If you've added API keys but are seeing errors related to them, there might be issues with the keys or the connection to the API services.</p>
+        <div class="solution">
+          <strong>Solution:</strong>
+          <ol>
+            <li>Verify that your API keys are entered correctly in the settings</li>
+            <li>Check if the API services are operational (visit their status pages)</li>
+            <li>Ensure your internet connection is stable</li>
+            <li>Try using the extension without API keys temporarily to see if the issue persists</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="troubleshooting-item">
+        <h3>Extension is slowing down browsing</h3>
+        <p>If you notice performance issues while using PhishGuard, you can adjust settings to improve performance.</p>
+        <div class="solution">
+          <strong>Solution:</strong>
+          <ol>
+            <li>Disable content scanning in settings (this will still allow URL checking)</li>
+            <li>Reduce the number of phishing databases checked (e.g., disable one or more of PhishTank, Google Safe Browsing, or custom database)</li>
+            <li>Set warning level to "Low" to reduce the intensity of checks</li>
+            <li>Make sure your browser and system are up to date</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="troubleshooting-item">
+        <h3>Settings are not saving</h3>
+        <p>If your settings aren't being saved when you change them, there might be issues with browser storage.</p>
+        <div class="solution">
+          <strong>Solution:</strong>
+          <ol>
+            <li>Clear browser cache and cookies</li>
+            <li>Make sure you have sufficient disk space</li>
+            <li>Check if other extensions are working properly (to rule out browser-wide issues)</li>
+            <li>Try using the "Reset to Defaults" button in settings, then reconfigure your preferences</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    
+    <div id="usage" class="tab-content">
+      <h2>How to Use PhishGuard</h2>
+      
+      <h3>Getting Started</h3>
+      <ol>
+        <li><strong>Installation:</strong> After installing PhishGuard from the Chrome Web Store, you'll see the PhishGuard icon in your browser toolbar.</li>
+        <li><strong>Initial Setup:</strong> Click the icon and select "Settings" to configure your preferences and add API keys if desired.</li>
+        <li><strong>Basic Protection:</strong> PhishGuard works automatically in the background, checking websites as you browse.</li>
+      </ol>
+      
+      <h3>Understanding the Icon Colors</h3>
+      <p>The PhishGuard icon in your browser toolbar changes color to indicate the status of the current website:</p>
+      <ul>
+        <li><strong>Blue:</strong> PhishGuard is active and no threats are detected</li>
+        <li><strong>Yellow:</strong> Potential suspicious elements detected (low confidence)</li>
+        <li><strong>Red:</strong> Phishing site detected (high confidence)</li>
+        <li><strong>Gray:</strong> PhishGuard is disabled or not active on this page</li>
+      </ul>
+      
+      <h3>Responding to Warnings</h3>
+      <p>When PhishGuard detects a potential phishing site, you'll see a warning overlay with the following options:</p>
+      <ul>
+        <li><strong>Back to Safety:</strong> Returns you to the previous page (recommended)</li>
+        <li><strong>Proceed Anyway:</strong> Continues to the site despite the warning (use with caution)</li>
+      </ul>
+      <p>The warning will include details about why the site was flagged, helping you make an informed decision.</p>
+      
+      <h3>Reporting Phishing Sites</h3>
+      <ol>
+        <li>Click the PhishGuard icon in your browser toolbar</li>
+        <li>Click "Report This Site" in the popup</li>
+        <li>Fill out the report form with details about the suspected phishing site</li>
+        <li>Click "Submit Report"</li>
+      </ol>
+      <p>Your reports help improve protection for all users and contribute to the fight against phishing.</p>
+      
+      <h3>Customizing Settings</h3>
+      <p>To access settings, click the PhishGuard icon and select "Settings". You can customize:</p>
+      <ul>
+        <li><strong>Protection Settings:</strong> Enable/disable different phishing databases and content scanning</li>
+        <li><strong>Warning Level:</strong> Choose between Low, Medium, or High sensitivity</li>
+        <li><strong>API Keys:</strong> Add keys for enhanced protection</li>
+        <li><strong>Data & Privacy:</strong> Control what data is collected and shared</li>
+      </ul>
+      
+      <h3>Viewing Statistics</h3>
+      <p>The PhishGuard popup shows statistics about your protection:</p>
+      <ul>
+        <li>Number of sites checked</li>
+        <li>Number of threats blocked</li>
+        <li>Days the extension has been active</li>
+      </ul>
+      <p>These statistics help you understand how PhishGuard is protecting you over time.</p>
+    </div>
+    
+    <div id="contact" class="tab-content">
+      <h2>Contact Support</h2>
+      
+      <p>If you need assistance with PhishGuard or want to report an issue not covered in our help resources, our support team is here to help.</p>
+      
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-icon">✉️</div>
+          <h3>Email Support</h3>
+          <p>For general inquiries and support:</p>
+          <p><a href="mailto:byralax@gmail.com">byralax@gmail.com</a></p>
+          <p>Response time: 24-48 hours</p>
+        </div>
+        
+        <div class="contact-method">
+          <div class="contact-icon">🐞</div>
+          <h3>Bug Reports</h3>
+          <p>Found a bug? Help us improve:</p>
+          <p><a href="mailto:byralax@gmail.com">byralax@gmail.com</a></p>
+          <p>Please include detailed steps to reproduce the issue</p>
+        </div>
+        
+        <div class="contact-method">
+          <div class="contact-icon">💡</div>
+          <h3>Feature Requests</h3>
+          <p>Have an idea to make PhishGuard better? Let us know:</p>
+          <p><a href="mailto:byralax@gmail.com">byralax@gmail.com</a></p>
+          <p>We value your input and regularly implement user suggestions</p>
+        </div>
+      </div>
+      
+      <h3>Before Contacting Support</h3>
+      <p>To help us resolve your issue more quickly, please:</p>
+      <ul>
+        <li>Check if your question is answered in the FAQ or troubleshooting sections</li>
+        <li>Include your browser version and operating system</li>
+        <li>Provide a detailed description of the issue or question</li>
+        <li>Include screenshots if applicable</li>
+        <li>Mention any error messages you've encountered</li>
+      </ul>
+      
+      <h3>Office Hours</h3>
+      <p>Our support team is available Monday through Friday, 9:00 AM to 5:00 PM WAT (West Africa Time).</p>
+    </div>
+    
+    <div id="resources" class="tab-content">
+      <h2>Additional Resources</h2>
+      
+      <p>Enhance your knowledge about phishing and cybersecurity with these resources:</p>
+      
+      <div class="resources-list">
+        <div class="resource-item">
+          <div class="resource-icon">📚</div>
+          <h3>Phishing Education</h3>
+          <p>Learn to identify and avoid phishing attempts</p>
+          <a href="https://github.com/byralax" target="_blank">View Resources</a>
+        </div>
+        
+        <div class="resource-item">
+          <div class="resource-icon">🔒</div>
+          <h3>Cybersecurity Best Practices</h3>
+          <p>Tips for staying safe online</p>
+          <a href="https://github.com/byralax" target="_blank">View Resources</a>
+        </div>
+        
+        <div class="resource-item">
+          <div class="resource-icon">📊</div>
+          <h3>Phishing Statistics</h3>
+          <p>Data on phishing trends in Nigeria and globally</p>
+          <a href="https://github.com/byralax" target="_blank">View Resources</a>
+        </div>
+        
+        <div class="resource-item">
+          <div class="resource-icon">🎓</div>
+          <h3>Training Materials</h3>
+          <p>Educational resources for individuals and organizations</p>
+          <a href="https://github.com/byralax" target="_blank">View Resources</a>
+        </div>
+      </div>
+      
+      <h3>Partner Organizations</h3>
+      <ul>
+        <li><a href="https://www.phishtank.com/" target="_blank">PhishTank</a> - Community-based phishing verification</li>
+        <li><a href="https://safebrowsing.google.com/" target="_blank">Google Safe Browsing</a> - Protection against unsafe web resources</li>
+        <li><a href="https://www.antiphishing.org/" target="_blank">Anti-Phishing Working Group</a> - Global coalition against phishing</li>
+        <li><a href="https://www.nitda.gov.ng/" target="_blank">National Information Technology Development Agency (NITDA)</a> - Nigeria's IT development agency</li>
+      </ul>
+      
+     
+    
+    <div class="footer">
+      <p><a href="welcome.html">Welcome</a> | <a href="privacy.html">Privacy Policy</a> | <a href="options.html">Settings</a></p>
+    <p>PhishGuard v1.0.0 | Developed by <a href="https://github.com/byralax" target="_blank">byralax</a></p>
+    </div>
+  </div>
+  
+  <script>
+    // Tab switching functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add('active');
+          const tabId = tab.getAttribute('data-tab');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+      
+      // FAQ accordion functionality
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const answer = question.nextElementSibling;
+          
+          // Toggle open class
+          question.classList.toggle('open');
+          answer.classList.toggle('open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

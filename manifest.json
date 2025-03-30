@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "PhishGuard",
+  "version": "1.0.0",
+  "description": "Protect yourself from phishing attacks with real-time detection and alerts",
+  "permissions": ["storage", "webNavigation", "webRequest", "tabs", "notifications"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "logo.webp",
+      "48": "logo.webp",
+      "128": "logo.webp"
+    }
+  },
+  "icons": {
+    "16": "logo.webp",
+    "48": "logo.webp",
+    "128": "logo.webp"
+  },
+  "options_page": "options.html"
+}
+

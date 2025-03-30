@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Phishing Site - PhishGuard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .header {
+      background-color: #4285F4;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .header img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+    }
+    
+    .content {
+      padding: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .url-display {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      word-break: break-all;
+      margin-bottom: 20px;
+    }
+    
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    
+    .submit-btn {
+      background-color: #4285F4;
+      color: white;
+    }
+    
+    .submit-btn:hover {
+      background-color: #3367D6;
+    }
+    
+    .cancel-btn {
+      background-color: white;
+      color: #4285F4;
+      border: 1px solid #4285F4 !important;
+    }
+    
+    .cancel-btn:hover {
+      background-color: #f0f7ff;
+    }
+    
+    .footer {
+      padding: 15px 20px;
+      background-color: #f5f5f5;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .status-message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      display: none;
+    }
+    
+    .success {
+      background-color: #E8F5E9;
+      color: #2E7D32;
+      border: 1px solid #C8E6C9;
+    }
+    
+    .error {
+      background-color: #FFEBEE;
+      color: #C62828;
+      border: 1px solid #FFCDD2;
+    }
+    
+    .thank-you {
+      text-align: center;
+      padding: 30px 20px;
+      display: none;
+    }
+    
+    .thank-you h2 {
+      color: #4285F4;
+      margin-top: 0;
+    }
+    
+    .thank-you p {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><img src="logo.webp" alt="PhishGuard Logo"> Report Phishing Site</h1>
+    </div>
+    
+    <div class="content">
+      <div id="report-form">
+        <p>Help protect others by reporting suspected phishing websites. Your report will be reviewed and added to our database if confirmed.</p>
+        
+        <div class="form-group">
+          <label>URL to report:</label>
+          <div id="report-url" class="url-display"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <select id="category">
+            <option value="banking">Banking/Financial</option>
+            <option value="email">Email Provider</option>
+            <option value="social">Social Media</option>
+            <option value="ecommerce">E-commerce/Shopping</option>
+            <option value="government">Government</option>
+            <option value="payment">Payment Service</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="details">Additional Details (optional):</label>
+          <textarea id="details" placeholder="Please provide any additional information about this phishing site..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Your Email (optional):</label>
+          <input type="text" id="email" placeholder="We'll only contact you if we need more information">
+        </div>
+        
+        <div id="status-message" class="status-message"></div>
+        
+        <div class="buttons">
+          <button id="cancel-btn" class="cancel-btn">Cancel</button>
+          <button id="submit-btn" class="submit-btn">Submit Report</button>
+        </div>
+      </div>
+      
+      <div id="thank-you" class="thank-you">
+        <h2>Thank You!</h2>
+        <p>Your report has been submitted successfully. Our team will review it and take appropriate action.</p>
+        <p>Together, we can make the internet safer for everyone.</p>
+        <button id="close-btn" class="submit-btn">Close</button>
+      </div>
+    </div>
+    
+    <div class="footer">
+    <p>PhishGuard v1.0.0 | Developed by <a href="https://github.com/byralax" target="_blank">byralax</a></p>
+    </div>
+  </div>
+  
+  <script src="report.js"></script>
+</body>
+</html>
+
